@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hero Kids - Know Your Rights!</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="sidebar">
+        <h2>🛡️ Hero Portal</h2>
+        <button class="nav-btn" onclick="showSection('home')">🏠 Home</button>
+        <button class="nav-btn" onclick="showSection('heroes')">🦸 Introduction</button>
+        <button class="nav-btn" onclick="showSection('laws')">📜 Laws & Acts</button>
+        <button class="nav-btn" onclick="showSection('comics')">🎨 Comic Strips</button>
+    </div>
+
+    <div class="main-content">
+        <div id="home" class="content-section">
+            <h1>Welcome to the Safety Squad!</h1>
+            <img src="1770918513091.png" alt="Superheroes" class="hero-banner">
+            <div class="card">
+                <p>Every child deserves to be safe and happy. Meet the heroes dedicated to teaching you about your rights and the laws that protect you!</p>
+            </div>
+        </div>
+
+        <div id="heroes" class="content-section" style="display:none;">
+            <h1>Meet the Heroes</h1>
+            <div class="hero-grid" id="hero-list">
+                </div>
+        </div>
+
+        <div id="laws" class="content-section" style="display:none;">
+            <h1>Laws That Protect You</h1>
+            <div class="card">
+                <h3>The POCSO Act</h3>
+                <p>A law designed to keep children safe from any kind of physical harm or inappropriate touch.</p>
+            </div>
+        </div>
+
+        <div class="emergency-footer">
+            🚨 EMERGENCY CONTACTS: Child Helpline: 1098 | Police: 100 🚨
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
