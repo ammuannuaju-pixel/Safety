@@ -3,47 +3,346 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hero Kids - Know Your Rights!</title>
-    <link rel="stylesheet" href="Styles.css">
+    <title>Safety Super Squad 🦸‍♂️🦸‍♀️</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background: linear-gradient(45deg, #ff6b9d, #c44569, #f8b500);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 50px 20px;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            color: #fff;
+            text-shadow: 3px 3px 0 #000;
+            margin-bottom: 20px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-20px); }
+            60% { transform: translateY(-10px); }
+        }
+
+        .superhero {
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle, #ffeb3b, #ffc107);
+            border-radius: 50%;
+            margin: 20px auto;
+            position: relative;
+            animation: spin 10s linear infinite;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .superhero:hover {
+            transform: scale(1.1);
+        }
+
+        @keyframes spin {
+            100% { transform: rotate(360deg); }
+        }
+
+        .law-card {
+            background: #fff;
+            margin: 30px auto;
+            max-width: 500px;
+            border-radius: 25px;
+            padding: 30px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.4s ease;
+        }
+
+        .law-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+        }
+
+        .law-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 8px;
+            background: linear-gradient(90deg, #ff6b9d, #4ecdc4, #45b7d1);
+        }
+
+        .law-emoji {
+            font-size: 4rem;
+            display: block;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .law-title {
+            font-size: 1.8rem;
+            color: #333;
+            text-align: center;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .law-desc {
+            color: #666;
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+
+        .danger-villain {
+            position: absolute;
+            font-size: 3rem;
+            animation: shake 0.5s infinite;
+            color: #ff4757;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+
+        .quiz-container {
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 30px;
+            background: rgba(255,255,255,0.95);
+            border-radius: 25px;
+            text-align: center;
+        }
+
+        .quiz-question {
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            color: #333;
+        }
+
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .quiz-btn {
+            padding: 15px 25px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 20px;
+            background: linear-gradient(45deg, #4ecdc4, #44a08d);
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: inherit;
+        }
+
+        .quiz-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .quiz-btn.correct {
+            background: linear-gradient(45deg, #00b894, #00a085);
+            animation: celebrate 0.6s ease;
+        }
+
+        .quiz-btn.wrong {
+            background: linear-gradient(45deg, #ff4757, #ff3838);
+        }
+
+        @keyframes celebrate {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .score {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #00b894;
+            margin-top: 20px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .law-card {
+                margin: 20px;
+                padding: 20px;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
 </head>
 <body>
-
-    <div class="sidebar">
-        <h2>🛡️ Hero Portal</h2>
-        <button class="nav-btn" onclick="showSection('home')">🏠 Home</button>
-        <button class="nav-btn" onclick="showSection('heroes')">🦸 Introduction</button>
-        <button class="nav-btn" onclick="showSection('laws')">📜 Laws & Acts</button>
-        <button class="nav-btn" onclick="showSection('comics')">🎨 Comic Strips</button>
+    <div class="hero">
+        <h1>Safety Super Squad! 🛡️</h1>
+        <div class="superhero" onclick="startQuiz()">
+            👨‍✈️🦸‍♀️🦸‍♂️🚨
+        </div>
+        <p style="color: white; font-size: 1.3rem; text-shadow: 2px 2px 0 #000;">
+            Click the superhero to fight bad guys with SUPER RULES! ⚡
+        </p>
     </div>
 
-    <div class="main-content">
-        <div id="home" class="content-section">
-            <h1>Welcome to the Safety Squad!</h1>
-            <img src="1770918513091.png" alt="Superheroes" class="hero-banner">
-            <div class="card">
-                <p>Every child deserves to be safe and happy. Meet the heroes dedicated to teaching you about your rights and the laws that protect you!</p>
-            </div>
-        </div>
-
-        <div id="heroes" class="content-section" style="display:none;">
-            <h1>Meet the Heroes</h1>
-            <div class="hero-grid" id="hero-list">
-                </div>
-        </div>
-
-        <div id="laws" class="content-section" style="display:none;">
-            <h1>Laws That Protect You</h1>
-            <div class="card">
-                <h3>The POCSO Act</h3>
-                <p>A law designed to keep children safe from any kind of physical harm or inappropriate touch.</p>
-            </div>
-        </div>
-
-        <div class="emergency-footer">
-            🚨 EMERGENCY CONTACTS: Child Helpline: 1098 | Police: 100 🚨
-        </div>
+    <div class="law-card" onclick="showLaw(1)">
+        <span class="danger-villain">👹 BAD TOUCH!</span>
+        <div class="law-emoji">🚫✋</div>
+        <h2 class="law-title">POCSO Super Rule #1</h2>
+        <p class="law-desc">
+            No one can touch your private parts! If uncle/aunty asks for secret photos or touches you weirdly - 
+            <strong>RUN & TELL MOM/DAD/TEACHER!</strong> Police will catch the villain! 🚨
+        </p>
     </div>
 
-    <script src="Script.js"></script>
+    <div class="law-card" onclick="showLaw(2)">
+        <span class="danger-villain" style="right: 10px; top: 10px;">🤫</span>
+        <div class="law-emoji">🗣️📞</div>
+        <h2 class="law-title">Superhero Helpline</h2>
+        <p class="law-desc">
+            Bad secret? Call <strong>1098</strong> - Child Helpline! They come faster than Superman! 🦸‍♂️
+            Tell teacher/police - you're the BRAVEST hero ever! 🏅
+        </p>
+    </div>
+
+    <div class="law-card" onclick="showLaw(3)">
+        <span class="danger-villain" style="left: 20px;">😈</span>
+        <div class="law-emoji">👮‍♂️🔒</div>
+        <h2 class="law-title">JJ Act Power!</h2>
+        <p class="law-desc">
+            If someone hurts you, government gives safe home & counseling! Bad guys go to JAIL - not you! 
+            Kerala has special Child Rights team watching 24/7! 🛡️
+        </p>
+    </div>
+
+    <div class="quiz-container hidden" id="quizContainer">
+        <h2>🧠 Safety Super Quiz!</h2>
+        <div id="quizQuestion" class="quiz-question"></div>
+        <div id="quizOptions" class="quiz-options"></div>
+        <div id="quizScore" class="score hidden"></div>
+        <button class="quiz-btn" onclick="nextQuestion()" id="nextBtn" style="display:none;">Next Challenge ➡️</button>
+    </div>
+
+    <script>
+        let currentQuestion = 0;
+        let score = 0;
+        let answered = false;
+
+        const questions = [
+            {
+                question: "Uncle says 'Show me your photo without clothes - it's our secret!' What do you do?",
+                options: ["🤫 Keep secret", "📞 Call 1098", "😊 Say yes", "🤷 Nothing"],
+                correct: 1
+            },
+            {
+                question: "Someone touches you where your swimsuit covers. Is this OK?",
+                options: ["✅ Yes", "❌ NO! Tell adult!", "🤔 Maybe", "😴 Sleep"],
+                correct: 1
+            },
+            {
+                question: "Bad Touch = ?",
+                options: ["🍭 Candy", "🚫 Private parts", "🎮 Games", "📚 Books"],
+                correct: 1
+            },
+            {
+                question: "Kerala Child Helpline Number?",
+                options: ["100", "1098", "999", "123"],
+                correct: 1
+            }
+        ];
+
+        function startQuiz() {
+            document.querySelector('.hero').style.display = 'none';
+            document.querySelectorAll('.law-card').forEach(card => {
+                card.style.display = 'none';
+            });
+            document.getElementById('quizContainer').classList.remove('hidden');
+            nextQuestion();
+        }
+
+        function showLaw(id) {
+            alert(`🦸‍♀️ Super Law #${id} POWER ACTIVATED!
+
+Bad guys HATE this rule! You're safe! 💪`);
+        }
+
+        function nextQuestion() {
+            if (currentQuestion >= questions.length) {
+                endQuiz();
+                return;
+            }
+
+            answered = false;
+            const q = questions[currentQuestion];
+            document.getElementById('quizQuestion').textContent = q.question;
+            
+            const optionsDiv = document.getElementById('quizOptions');
+            optionsDiv.innerHTML = '';
+            
+            q.options.forEach((option, index) => {
+                const btn = document.createElement('button');
+                btn.className = 'quiz-btn';
+                btn.textContent = option;
+                btn.onclick = () => checkAnswer(index, q.correct);
+                optionsDiv.appendChild(btn);
+            });
+
+            document.getElementById('nextBtn').style.display = 'none';
+            document.getElementById('quizScore').classList.add('hidden');
+        }
+
+        function checkAnswer(selected, correct) {
+            if (answered) return;
+            answered = true;
+
+            const buttons = document.querySelectorAll('.quiz-btn');
+            buttons.forEach((btn, index) => {
+                if (index === correct) {
+                    btn.classList.add('correct');
+                    score++;
+                } else if (index === selected && index !== correct) {
+                    btn.classList.add('wrong');
+                }
+                btn.style.pointerEvents = 'none';
+            });
+
+            document.getElementById('nextBtn').style.display = 'block';
+        }
+
+        function endQuiz() {
+            document.getElementById('quizQuestion').innerHTML = '🎉 QUIZ COMPLETE! 🎉';
+            document.getElementById('quizOptions').innerHTML = '';
+            document.getElementById('quizScore').textContent = `Your Score: ${score}/${questions.length} ⭐`;
+            document.getElementById('quizScore').classList.remove('hidden');
+            document.getElementById('nextBtn').textContent = 'Play Again! 🔄';
+            document.getElementById('nextBtn').onclick = () => {
+                currentQuestion = 0;
+                score = 0;
+                nextQuestion();
+            };
+        }
+    </script>
 </body>
-</html>
+    </html>
